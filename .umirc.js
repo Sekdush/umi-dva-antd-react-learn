@@ -8,7 +8,7 @@ export default {
       antd: true,
       dva: true,
       dynamicImport: { webpackChunkName: true },
-      title: 'creat',
+      title: 'umi-dva-antd-react-learn',
       dll: true,
       locale: {
         enable: true,
@@ -25,4 +25,8 @@ export default {
       },
     }],
   ],
+  targets: {
+    ie: 11,
+    chrome: 41
+  },
 }
