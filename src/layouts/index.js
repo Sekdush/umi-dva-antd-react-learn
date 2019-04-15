@@ -1,5 +1,3 @@
-import styles from './index.css';
-import classnames from 'classnames';
 import DocumentTitle from 'react-document-title'; // 能动态修改页面title的
 import Header from './header';
 import Content from './content';
@@ -8,7 +6,7 @@ import { Layout } from 'antd';
 
 function BasicLayout(props) {
   const pageTitle = () => {
-    return '知识-Umi Pro';
+    return '学习-Umi Pro';
   };
   const { children } = props;
   return (

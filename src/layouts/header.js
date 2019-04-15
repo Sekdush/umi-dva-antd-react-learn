@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout, Row, Col, Avatar, Popover, Menu, Breadcrumb, Icon } from 'antd';
+import { Layout, Row, Col, Menu } from 'antd';
 import classNames from 'classNames';
 import styles from './index.less';
 

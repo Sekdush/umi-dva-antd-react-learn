@@ -1,0 +1,60 @@
+@sm: 20px;
+@lg      : 30px;
+@xs      : 10px;
+@width-sm: 25%;
+
+html,
+body,
+#root {
+  height          : 100%;
+  background-color: #efefef;
+}
+
+body {
+  margin: 0;
+}
+
+.flex-end {
+  display        : flex;
+  justify-content: flex-end;
+  flex-direction : row;
+  flex-wrap      : wrap;
+}
+
+.flex-between {
+  display        : flex;
+  justify-content: space-between;
+  flex-direction : row;
+  flex-wrap      : wrap;
+}
+
+.flex-start {
+  display        : flex;
+  justify-content: flex-start;
+  flex-direction : row;
+  flex-wrap      : wrap;
+}
+
+.margin-left-sm {
+  margin-left: @sm;
+}
+
+.margin-right-sm {
+  margin-right: @sm;
+}
+
+.input-width-sm {
+  width: @width-sm  !important;
+}
+
+.override-ant-input {
+  :global(.ant-input-affix-wrapper) {
+    .margin-right-sm
+  }
+
+  :global(.ant-input-number) {
+    .margin-right-sm
+  }
+
+  
+}
