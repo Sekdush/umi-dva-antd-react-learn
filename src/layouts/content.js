@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 import Link from 'umi/link';
 import Footer from './footer';
+import styles from './index.css';
 
 const { SubMenu } = Menu;
 const { Content, Sider } = Layout;
 class content extends Component {
-  componentWillUnmount() { }
+  componentWillUnmount() {}
   render() {
     return (
       <Layout>
@@ -33,7 +34,7 @@ class content extends Component {
                 </Link>
               </Menu.Item>
               <Menu.Item key="index">
-              <Link to="/">
+                <Link to="/">
                   <Icon type="user" />
                   <span>首页</span>
                 </Link>
@@ -41,10 +42,9 @@ class content extends Component {
               <Menu.Item key="3">option3</Menu.Item>
               <Menu.Item key="4">option4</Menu.Item>
             </SubMenu>
-
           </Menu>
         </Sider>
-        <Layout style={{ padding: '0 24px ' }}>
+        <Layout style={{ padding: '0 24px ', height: '100%' }} className={'ant-over'}>
           <Breadcrumb style={{ margin: '16px 0' }}>
             <Breadcrumb.Item>Home</Breadcrumb.Item>
             <Breadcrumb.Item>List</Breadcrumb.Item>
@@ -56,6 +56,7 @@ class content extends Component {
               padding: 24,
               margin: 0,
               minHeight: 280,
+              height: '100%',
             }}
           >
             {this.props.children}
