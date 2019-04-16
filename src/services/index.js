@@ -1,5 +1,5 @@
-import request from 'utils/request';
-import { apiPrefix } from 'utils/config';
+import request from '../utils/request';
+import { apiPrefix } from '../utils/config';
 
 import api from './api';
 
