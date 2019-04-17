@@ -13,12 +13,12 @@ class addOrModifyUserModal extends Component {
         return (
             <>
                 <Modal
-                    title="Vertically centered modal dialog"
+                    title={this.props.isModify?'修改':'添加'}
                     centered
-                    okText={'确认'}
+                    okText={this.props.isModify?'修改':'添加'}
                     cancelText={'取消'}
                     visible={this.props.modalVisible}
-                    onOk={() => this.props.setModalVisible(false)}
+                    onOk={this.props.isModify?() => this.props.onModify():() => this.props.onAdd()}
                     onCancel={() => this.props.setModalVisible(false)}
                 >
                     <Form.Item>

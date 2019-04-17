@@ -55,8 +55,7 @@ class content extends Component {
               background: '#fff',
               padding: 24,
               margin: 0,
-              minHeight: 280,
-              height: '100%',
+              minHeight:'unset'
             }}
           >
             {this.props.children}

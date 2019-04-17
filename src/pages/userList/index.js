@@ -23,6 +23,7 @@ class userListPage extends Component {
         },
       },
       modalProps: {
+        isModify: false,
         modalVisible: false,
         formData: {
           name: '',
@@ -33,7 +34,6 @@ class userListPage extends Component {
       tableProps: {
         selectedRowKeys: [], // Check here to configure the default column
         loading: false,
-
       },
     };
   }
@@ -49,7 +49,7 @@ class userListPage extends Component {
           hasSelected={hasSelected}
         />
         <Table {...this.state.tableProps} {...this.tableFunction} tableData={tableData} />
-        <AddOrModifyUserModal {...this.state.modalProps} {...this.modalFUnction} />
+        <AddOrModifyUserModal {...this.state.modalProps} {...this.modalFunction} />
       </>
     );
   }
@@ -57,6 +57,7 @@ class userListPage extends Component {
     addUser: () => {
       let modalProps = this.state.modalProps;
       modalProps.modalVisible = true;
+      modalProps.isModify = false;
       modalProps.formData = {
         name: '',
         age: null,
@@ -70,37 +71,71 @@ class userListPage extends Component {
       let value;
       let actionProps = cloneDeep(this.state.actionProps);
       if (type === 'name') {
-        value = e.target.value;
+        value = e.target.value.replace(/\s*/g,"");
         actionProps.searchInputData.name = value;
       } else if (type === 'age') {
         value = e;
         actionProps.searchInputData.age = value;
       } else {
-        value = e.target.value;
+        value = e.target.value.replace(/\s*/g,"");
         actionProps.searchInputData.address = value;
       }
       this.setState({
         actionProps,
       });
     },
+    deleteUser: () => {
+      this.props.dispatch({
+        type: 'userList/deleteUser',
+        data: this.state.tableProps.selectedRowKeys,
+        queryData:this.state.actionProps.searchQueryData
+      });
+    },
+    searchUser: () => {
+      let actionProps = this.state.actionProps;
+      actionProps.searchQueryData = actionProps.searchInputData;
+      this.setState({ actionProps }, function() {
+        this.props.dispatch({
+          type: 'userList/getUserList',
+          data: this.state.actionProps.searchQueryData,
+        });
+      });
+
+    },
   };
-  modalFUnction = {
+  modalFunction = {
     setModalVisible: modalVisible => {
       let modalProps = this.state.modalProps;
       modalProps.modalVisible = modalVisible;
       this.setState({ modalProps });
     },
+    onAdd: () => {
+      this.props.dispatch({
+        type: 'userList/addUser',
+        data: this.state.modalProps.formData,
+        setModalVisible: this.modalFunction.setModalVisible,
+        queryData:this.state.actionProps.searchQueryData
+      });
+    },
+    onModify: () => {
+      this.props.dispatch({
+        type: 'userList/updateUser',
+        data: this.state.modalProps.formData,
+        setModalVisible: this.modalFunction.setModalVisible,
+        queryData:this.state.actionProps.searchQueryData
+      });
+    },
     onChange: (type, e) => {
       let value;
       let modalProps = cloneDeep(this.state.modalProps);
       if (type === 'name') {
-        value = e.target.value;
+        value = e.target.value.replace(/\s*/g,"");
         modalProps.formData.name = value;
       } else if (type === 'age') {
         value = e;
         modalProps.formData.age = value;
       } else {
-        value = e.target.value;
+        value = e.target.value.replace(/\s*/g,"");
         modalProps.formData.address = value;
       }
       this.setState({
@@ -111,6 +146,7 @@ class userListPage extends Component {
   tableFunction = {
     modifyUser: row => {
       let modalProps = this.state.modalProps;
+      modalProps.isModify = true;
       modalProps.modalVisible = true;
       modalProps.formData = row;
       this.setState({
