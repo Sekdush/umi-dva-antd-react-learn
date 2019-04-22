@@ -65,5 +65,4 @@ class content extends Component {
     );
   }
 }
-
 export default content;
