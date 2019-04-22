@@ -38,6 +38,7 @@ class userListPage extends Component {
     };
   }
 
+  // eslint-disable-next-line react/sort-comp
   render() {
     const { tableData } = this.props;
     const hasSelected = this.state.tableProps.selectedRowKeys.length > 0;
@@ -71,24 +72,26 @@ class userListPage extends Component {
       let value;
       let actionProps = cloneDeep(this.state.actionProps);
       if (type === 'name') {
-        value = e.target.value.replace(/\s*/g,"");
+        value = e.target.value.replace(/\s*/g, '');
         actionProps.searchInputData.name = value;
       } else if (type === 'age') {
         value = e;
         actionProps.searchInputData.age = value;
       } else {
-        value = e.target.value.replace(/\s*/g,"");
+        value = e.target.value.replace(/\s*/g, '');
         actionProps.searchInputData.address = value;
       }
       this.setState({
         actionProps,
       });
     },
+
     deleteUser: () => {
       this.props.dispatch({
         type: 'userList/deleteUser',
         data: this.state.tableProps.selectedRowKeys,
-        queryData:this.state.actionProps.searchQueryData
+        queryData: this.state.actionProps.searchQueryData,
+        reSetSelected: this.tableFunction.reSetSelected,
       });
     },
     searchUser: () => {
@@ -100,7 +103,6 @@ class userListPage extends Component {
           data: this.state.actionProps.searchQueryData,
         });
       });
-
     },
   };
   modalFunction = {
@@ -114,7 +116,7 @@ class userListPage extends Component {
         type: 'userList/addUser',
         data: this.state.modalProps.formData,
         setModalVisible: this.modalFunction.setModalVisible,
-        queryData:this.state.actionProps.searchQueryData
+        queryData: this.state.actionProps.searchQueryData,
       });
     },
     onModify: () => {
@@ -122,20 +124,20 @@ class userListPage extends Component {
         type: 'userList/updateUser',
         data: this.state.modalProps.formData,
         setModalVisible: this.modalFunction.setModalVisible,
-        queryData:this.state.actionProps.searchQueryData
+        queryData: this.state.actionProps.searchQueryData,
       });
     },
     onChange: (type, e) => {
       let value;
       let modalProps = cloneDeep(this.state.modalProps);
       if (type === 'name') {
-        value = e.target.value.replace(/\s*/g,"");
+        value = e.target.value.replace(/\s*/g, '');
         modalProps.formData.name = value;
       } else if (type === 'age') {
         value = e;
         modalProps.formData.age = value;
       } else {
-        value = e.target.value.replace(/\s*/g,"");
+        value = e.target.value.replace(/\s*/g, '');
         modalProps.formData.address = value;
       }
       this.setState({
@@ -144,6 +146,13 @@ class userListPage extends Component {
     },
   };
   tableFunction = {
+    reSetSelected: () => {
+      let tableProps = this.state.tableProps;
+      tableProps.selectedRowKeys = [];
+      this.setState({
+        tableProps: tableProps,
+      });
+    },
     modifyUser: row => {
       let modalProps = this.state.modalProps;
       modalProps.isModify = true;

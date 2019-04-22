@@ -26,5 +26,4 @@ const APIFunction = {};
 for (const key in api) {
   APIFunction[key] = gen(api[key]);
 }
-
 export default APIFunction;

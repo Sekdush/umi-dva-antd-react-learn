@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 import Link from 'umi/link';
 import Footer from './footer';
-import styles from './index.css';
 
 const { SubMenu } = Menu;
 const { Content, Sider } = Layout;
@@ -55,7 +54,7 @@ class content extends Component {
               background: '#fff',
               padding: 24,
               margin: 0,
-              minHeight:'unset'
+              minHeight: 'unset',
             }}
           >
             {this.props.children}

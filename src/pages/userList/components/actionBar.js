@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Divider, Input, Button, Icon, InputNumber, Modal } from 'antd';
-import classNames from 'classNames';
+import classNames from 'classnames';
 
 class actionBar extends Component {
   render() {

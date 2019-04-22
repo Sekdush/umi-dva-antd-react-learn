@@ -1,3 +1,4 @@
+/* eslint-disable react/no-children-prop */
 import DocumentTitle from 'react-document-title'; // 能动态修改页面title的
 import Header from './header';
 import Content from './content';

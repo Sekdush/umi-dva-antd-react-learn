@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Layout, Row, Col, Menu } from 'antd';
-import classNames from 'classNames';
+import classNames from 'classnames';
 import styles from './index.less';
 
 const { Header } = Layout;
